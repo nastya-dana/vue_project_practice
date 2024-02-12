@@ -24,7 +24,13 @@ export default {
     background-color: transparent;
     width: 30px;
     height: 30px;
-    // border: 1px solid: #000;
-    // border-radius: 50%;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+
+    &:hover {
+        background-color: #D58C51;
+        border: 1px solid #D58C51;
+    }
 }
 </style>

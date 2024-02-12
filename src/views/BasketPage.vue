@@ -1,9 +1,9 @@
 <template>
-    <header class="">шапка</header>
+    <div class=""></div>
 </template>
- 
+
 <script>
-//  import { ref } from 'vue'
+// import { ref } from 'vue'
 
 export default {
     name: '',
@@ -15,6 +15,5 @@ export default {
     }
 }
 </script>
- 
+
 <style lang="scss" scoped></style>
- 
