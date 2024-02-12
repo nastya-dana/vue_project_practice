@@ -30,8 +30,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button_icons {
-    width: 30px;
-    height: 30px;
-}
 </style>

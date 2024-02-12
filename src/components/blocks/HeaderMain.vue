@@ -1,63 +1,69 @@
 <template>
-    <header class="header">
+  <header class="header">
+    <div class="container header__wrapper">
+      <h1 class="header__left"> наша продукция </h1>
 
-        <div class="header__left"> наша продукция </div>
-        <!-- <div> -->
+      <div class="header__info">
         <div class="header__right">3 товара<br>на сумму 3 500 ₽</div>
         <div class="header__basket">
-            <basketIcon />
+          <basketIcon />
         </div>
-        <!-- </div> -->
-    </header>
+      </div>
+    </div>
+  </header>
 </template>
- 
+
 <script>
 //  import { ref } from 'vue'
 import basketIcon from '@/components/icons/basketIcon.vue'
 
 export default {
-    name: 'HeaderMain',
-    components: {
-        basketIcon
-    },
-    props: {
-    },
-    setup() {
-    }
+  name: 'HeaderMain',
+  components: {
+    basketIcon
+  },
+  props: {
+  },
+  setup() {
+  }
 }
 </script>
- 
+
 <style lang="scss" scoped>
 .header {
+  background-color: #161516;
+  color: #fff;
+  padding: 48px 0 75px 0;
+
+  &__wrapper {
     display: flex;
-    height: 120px;
-    // padding: 13px 70px;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    gap: 50px 70 px; //1485px;
-    background-color: #161516;
-    color: #fff;
-    // margin-bottom: 53px;
+  }
 
-    // margin-bottom: 235px;
-    &__left {
-        font-size: 31px;
-        margin-left: 70px;
-        margin-top: 54Px;
-    }
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 0 20px;
+  }
 
-    &__right {
-        // display: flex;
-        // justify-content: space-between;
-        // align-items: center;
-        font-size: 17px;
-        margin-top: 51Px;
-    }
+  &__left {
+    font-size: 31px;
+    font-family: Montserrat;
+    font-weight: 700;
+  }
 
-    &__basket {
-        margin-top: 48Px;
-        // margin-left: 1320px;
-    }
+  &__right {
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    font-size: 17px;
+    font-family: Montserrat;
+    font-weight: 500;
+  }
+
+  &__basket {
+    // margin-left: 1320px;
+  }
 }
 </style>
- 

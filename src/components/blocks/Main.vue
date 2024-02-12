@@ -3,11 +3,14 @@
     <div class="container main__wrapper">
       <CardProduct :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
         description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры " price="2 700" />
+
       <CardProduct :preview="require('@/assets/images/img2.png')" title="Свиные ребрышки на гриле с зеленью"
         description="Не следует, однако забывать, что реализация намеченных плановых " price="1 600" />
+
       <CardProduct :preview="require('@/assets/images/img3.png')" title="Креветки по-королевски в лимонном соке"
         description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры обеспечивает широкому кругу"
         price="1 820" />
+
       <CardProduct :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
         description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры " price="2 700" />
       <CardProduct :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
@@ -34,7 +37,7 @@ export default {
   props: {
     minusHeight: {
       type: String,
-      default: '120px'
+      default: '176px'
     }
   },
   setup() {
@@ -47,13 +50,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: calc(100vh-v-bind(minusHeight));
+  height: calc(100vh - v-bind(minusHeight));
   background-color: #161516;
   color: #fff;
   overflow: auto;
 
   .card {
-    width: 24%;
+    padding: 45px 20px 35px 20px;
+    width: 20%;
   }
 
   &__wrapper {

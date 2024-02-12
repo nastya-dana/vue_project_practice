@@ -57,20 +57,35 @@ export default {
     }
 }
 
+.card__preview {
+    margin-bottom: 20px;
+}
+
 .card__footer {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-top: auto;
+    width: 100%;
+    align-items: center;
 }
 
 .card__title {
     font-size: 17px;
+    font-family: Montserrat;
+    font-weight: 500;
+    margin-bottom: 15px;
 }
 
 .card__description {
     font-size: 14px;
+    font-family: Montserrat;
+    font-weight: 400;
+    margin-bottom: 31px;
 }
 
 .card__price {
     font-size: 17px;
+    font-family: Montserrat;
+    font-weight: 500;
 }
 </style>
