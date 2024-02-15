@@ -1,15 +1,23 @@
 <template>
-    <button class="button">+</button>
+    <button class="button">{{ title }}</button>
 </template>
 
 <script>
-import { ref } from 'vue'
+// import { ref } from 'vue'
 
 export default {
     name: 'ButtonUi',
     components: {
     },
     props: {
+        title: {
+            type: String,
+            default: '+'
+        },
+        rotate: {
+            type: String,
+            default: '0dec'
+        }
     },
     setup() {
     }
@@ -27,6 +35,7 @@ export default {
     border: 1px solid #fff;
     border-radius: 50%;
     color: #fff;
+    transform: rotate(v-bind(rotate));
 
     &:hover {
         background-color: #D58C51;
