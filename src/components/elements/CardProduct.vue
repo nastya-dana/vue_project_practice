@@ -1,14 +1,20 @@
 <template>
-    <div class="card">
+    <div :class="{
+        'card': true,
+        'card_horizontally': horizontally
+    }">
 
         <img class="card__preview" :src="preview" alt="">
         <div class="card__info">
             <h2 class="card__title">{{ title }}</h2>
-            <p class="card__description">{{ description }}</p>
+            <p class="card__description" v-if="!horizontally">{{ description }}</p>
         </div>
-        <div class="card__footer">
+        <div :class="{
+            'card__footer': true,
+            'card__footer_horizontally': !horizontally
+        }">
             <p class="card__price">{{ price }}</p>
-            <ButtonX />
+            <ButtonX title="+" />
         </div>
     </div>
 </template>
@@ -37,6 +43,10 @@ export default {
         price: {
             type: String,
             default: ''
+        },
+        horizontally: {
+            type: Boolean,
+            default: false
         }
     },
     setup() {
@@ -55,6 +65,34 @@ export default {
     &:hover {
         color: #D58C51;
     }
+
+    &_horizontally {
+        flex-direction: row;
+        align-items: center;
+        border: none;
+
+        .card__footer {
+            margin: 0 0 0 auto;
+        }
+
+        .card__title {
+            margin-left: 100px;
+            margin-bottom: 0;
+        }
+
+        .card__preview {
+            margin-bottom: 0;
+        }
+
+        .card__price {
+            margin: 0 20px 0 100px;
+            color: #D58C51;
+        }
+
+        &:hover {
+            color: inherit;
+        }
+    }
 }
 
 .card__preview {
@@ -63,10 +101,14 @@ export default {
 
 .card__footer {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin-top: auto;
-    width: 100%;
-    align-items: center;
+
+    &_horizontally {
+        width: 100%;
+    }
+
 }
 
 .card__title {

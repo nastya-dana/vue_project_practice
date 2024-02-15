@@ -1,12 +1,22 @@
 <template>
   <header class="header">
-    <div class="container header__wrapper">
-      <h1 class="header__left"> наша продукция </h1>
+    <div :class="{
+      'container header__wrapper': true,
+      'container__secandary': smallContainer
+    }">
+      <div class="header__back" v-if="isBasket">
+        <router-link to="/">
+          <ButtonX title="←" />
+        </router-link>
+      </div>
+      <h1 class="header__title"> {{ title }} </h1>
 
       <div class="header__info">
-        <div class="header__right">3 товара<br>на сумму 3 500 ₽</div>
+        <div class="header__right" v-if="!isBasket">3 товара<br>на сумму 3 500 ₽</div>
         <div class="header__basket">
-          <basketIcon />
+          <router-link to="/Basket" v-if="!isBasket">
+            <basketIcon />
+          </router-link>
         </div>
       </div>
     </div>
@@ -16,6 +26,7 @@
 <script>
 //  import { ref } from 'vue'
 import basketIcon from '@/components/icons/basketIcon.vue'
+import ButtonX from '@/components/ui/ButtonX.vue'
 
 export default {
   name: 'HeaderMain',
@@ -23,6 +34,18 @@ export default {
     basketIcon
   },
   props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    isBasket: {
+      type: Boolean,
+      default: false
+    },
+    smallContainer: {
+      type: Boolean,
+      default: false
+    }
   },
   setup() {
   }
@@ -47,7 +70,7 @@ export default {
     gap: 0 20px;
   }
 
-  &__left {
+  &__title {
     font-size: 31px;
     font-family: Montserrat;
     font-weight: 700;
@@ -60,10 +83,7 @@ export default {
     font-size: 17px;
     font-family: Montserrat;
     font-weight: 500;
-  }
 
-  &__basket {
-    // margin-left: 1320px;
   }
 }
 </style>

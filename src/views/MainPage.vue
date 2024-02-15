@@ -1,6 +1,6 @@
 <template>
-    <HeaderMain />
-    <Main />
+  <HeaderMain title="наша продукция" />
+  <Main />
 </template>
 
 <script>
@@ -16,9 +16,13 @@ export default {
   },
   props: {
   },
-  setup () {
+  setup() {
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+:deep(.card) {
+  width: 20%;
+}
+</style>

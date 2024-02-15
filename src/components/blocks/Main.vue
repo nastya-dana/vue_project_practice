@@ -1,26 +1,37 @@
 <template>
   <main class="main">
-    <div class="container main__wrapper">
-      <CardProduct :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
+    <div :class="{
+      'container main__wrapper': true,
+      'main__wrapper_column': column,
+      'container__secandary': column
+    }">
+      <CardProduct :horizontally="column" :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
         description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры " price="2 700" />
 
-      <CardProduct :preview="require('@/assets/images/img2.png')" title="Свиные ребрышки на гриле с зеленью"
+      <CardProduct :horizontally="column" :preview="require('@/assets/images/img2.png')"
+        title="Свиные ребрышки на гриле с зеленью"
         description="Не следует, однако забывать, что реализация намеченных плановых " price="1 600" />
 
-      <CardProduct :preview="require('@/assets/images/img3.png')" title="Креветки по-королевски в лимонном соке"
+      <CardProduct :horizontally="column" :preview="require('@/assets/images/img3.png')"
+        title="Креветки по-королевски в лимонном соке"
         description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры обеспечивает широкому кругу"
         price="1 820" />
 
-      <CardProduct :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
+      <CardProduct :horizontally="column" :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
         description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры " price="2 700" />
-      <CardProduct :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
+
+      <CardProduct :horizontally="column" :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
         description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры " price="2 700" />
-      <CardProduct :preview="require('@/assets/images/img2.png')" title="Свиные ребрышки на гриле с зеленью"
+      <CardProduct :horizontally="column" :preview="require('@/assets/images/img2.png')"
+        title="Свиные ребрышки на гриле с зеленью"
         description="Не следует, однако забывать, что реализация намеченных плановых " price="1 600" />
-      <CardProduct :preview="require('@/assets/images/img3.png')" title="Креветки по-королевски в лимонном соке"
+
+      <CardProduct :horizontally="column" :preview="require('@/assets/images/img3.png')"
+        title="Креветки по-королевски в лимонном соке"
         description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры обеспечивает широкому кругу"
         price="1 820" />
-      <CardProduct :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
+
+      <CardProduct :horizontally="column" :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
         description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры " price="2 700" />
     </div>
   </main>
@@ -38,6 +49,10 @@ export default {
     minusHeight: {
       type: String,
       default: '176px'
+    },
+    column: {
+      type: Boolean,
+      default: false
     }
   },
   setup() {
@@ -57,7 +72,7 @@ export default {
 
   .card {
     padding: 45px 20px 35px 20px;
-    width: 20%;
+    //width: 20%;
   }
 
   &__wrapper {
@@ -65,6 +80,11 @@ export default {
     gap: 35px 10px;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    &_column {
+      // flex-direction: column;
+      display: block;
+    }
   }
 
 }
