@@ -31,7 +31,8 @@ import ButtonX from '@/components/ui/ButtonX.vue'
 export default {
   name: 'HeaderMain',
   components: {
-    basketIcon
+    basketIcon,
+    ButtonX
   },
   props: {
     title: {
@@ -83,7 +84,17 @@ export default {
     font-size: 17px;
     font-family: Montserrat;
     font-weight: 500;
+  }
 
+  :deep(button) {
+
+    border: 1px solid #D58C51;
+    color: #D58C51;
+
+    &:hover {
+      color: inherit;
+
+    }
   }
 }
 </style>
