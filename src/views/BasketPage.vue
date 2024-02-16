@@ -19,15 +19,15 @@ import HeaderMain from '@/components/blocks/HeaderMain.vue'
 import Main from '@/components/blocks/Main.vue'
 
 export default {
-    name: 'BasketPage',
-    components: {
-        HeaderMain,
-        Main
-    },
-    props: {
-    },
-    setup() {
-    }
+  name: 'BasketPage',
+  components: {
+    HeaderMain,
+    Main
+  },
+  props: {
+  },
+  setup () {
+  }
 }
 </script>
 
