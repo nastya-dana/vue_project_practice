@@ -9,8 +9,8 @@ const routes = [
     component: Products
   },
   {
-    path: '/Basket',
-    name: 'Basket',
+    path: '/basket',
+    name: 'basket',
     component: Basket
   }
 ]

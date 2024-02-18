@@ -15,6 +15,7 @@
 
 <script>
 // import { ref } from 'vue'
+
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 import HeaderMain from '@/components/blocks/HeaderMain.vue'
@@ -34,12 +35,19 @@ export default {
         const basket = computed(() => {
             return store.getters.getBasketList
         })
+
         const price = computed(() => {
             return store.getters.getAllPriceInBasket
         })
+
+        const clickCard = (item) => {
+            store.commit('SetBasketRemoveItem', item.idx)
+        }
+
         return {
             basket,
-            price
+            price,
+            clickCard
         }
     }
 }
