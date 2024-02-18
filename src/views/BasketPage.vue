@@ -1,12 +1,12 @@
 <template>
     <HeaderMain isBasket smallContainer title="Корзина с выбранными товарами" />
-    <Main column minusHeight="249px" />
+    <Main column minusHeight="249px" :listArray="basket" />
     <hr class="basket-card_line">
     <footer>
         <div class="container__secandary basket-card_footer">
             <div class="basket-card_info">
                 <h2 class="basket-card_descr">Заказ на сумму: </h2>
-                <p class="basket-card_price">6 220 ₽</p>
+                <p class="basket-card_price">{{ price }} ₽</p>
             </div>
             <button class="basket-card_button">Оформить заказ</button>
         </div>
@@ -15,19 +15,33 @@
 
 <script>
 // import { ref } from 'vue'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 import HeaderMain from '@/components/blocks/HeaderMain.vue'
 import Main from '@/components/blocks/Main.vue'
 
 export default {
-  name: 'BasketPage',
-  components: {
-    HeaderMain,
-    Main
-  },
-  props: {
-  },
-  setup () {
-  }
+    name: 'BasketPage',
+    components: {
+        HeaderMain,
+        Main
+    },
+    props: {
+    },
+    setup() {
+        const store = useStore()
+
+        const basket = computed(() => {
+            return store.getters.getBasketList
+        })
+        const price = computed(() => {
+            return store.getters.getAllPriceInBasket
+        })
+        return {
+            basket,
+            price
+        }
+    }
 }
 </script>
 
@@ -77,5 +91,6 @@ footer {
     background-color: #D58C51;
     width: 200px;
     height: 42px;
+    cursor: pointer;
 }
 </style>
