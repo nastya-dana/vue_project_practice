@@ -1,6 +1,6 @@
 <template>
     <HeaderMain isBasket smallContainer title="Корзина с выбранными товарами" />
-    <Main column minusHeight="249px" :listArray="basket" />
+    <Main column minusHeight="249px" :listArray="basket" @clickCard="clickCard" />
     <hr class="basket-card_line">
     <footer>
         <div class="container__secandary basket-card_footer">

@@ -14,7 +14,7 @@
       'card__footer_horizontally': !horizontally
     }">
       <span class="card__price">{{ price }} ₽</span>
-      <ButtonX title="+" />
+      <ButtonX title="+" @click="$emit('ClickCard')" />
     </div>
   </div>
 </template>

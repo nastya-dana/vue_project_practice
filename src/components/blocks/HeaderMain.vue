@@ -7,6 +7,7 @@
       <div class="header__back" v-if="isBasket">
         <router-link to="/">
           <ButtonX title="←" />
+          <!-- @click="router.do(-1)" -->
         </router-link>
       </div>
       <h1 class="header__title"> {{ title }} </h1>
@@ -27,6 +28,7 @@
 //  import { ref } from 'vue'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 import basketIcon from '@/components/icons/basketIcon.vue'
 import ButtonX from '@/components/ui/ButtonX.vue'
@@ -54,6 +56,8 @@ export default {
   setup() {
     const store = useStore()
 
+    const router = useRouter()
+
     const count = computed(() => {
       return store.getters.getCountBasketProduct
     })
@@ -62,7 +66,8 @@ export default {
     })
     return {
       count,
-      price
+      price,
+      router
     }
 
   }

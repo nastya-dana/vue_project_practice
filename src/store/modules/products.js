@@ -5,21 +5,7 @@ export default {
         CountBasketProduct: 0,
         AllPriceInBasket: 0,
         ProductsList: products,
-        BasketList: [
-            {
-                id: 1,
-                img: require('@/assets/images/img1.png'),
-                title: "Устрицы по рокфеллеровски",
-
-                price: 2700
-            },
-            {
-                id: 2,
-                img: require('@/assets/images/img2.png'),
-                title: "Свиные ребрышки на гриле с зеленью",
-                price: 1600
-            }
-        ]
+        BasketList: []
     },
     getters: {
         getProductsList: state => state.ProductsList,
@@ -29,6 +15,19 @@ export default {
 
     },
     mutations: {
+        SetBasketList(state, val) {
+            state.ProductsList.forEach(item => {
+                if (item.id === val) {
+                    state.BasketList.push(item)
+                }
+            });
+            state.CountBasketProduct = state.BasketList.length
+            state.AllPriceInBasket = state.BasketList.reduce((prev, item) => {
+                return prev + item.price
+            }, 0)
+            //.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1')
+        }
+
     },
     actions: {
     }
