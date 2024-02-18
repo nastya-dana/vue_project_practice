@@ -1,6 +1,6 @@
 <template>
   <HeaderMain title="наша продукция" />
-  <Main :listArray="products" />
+  <Main :listArray="products" @clickCard="clickCard" />
 </template>
 
 <script>
@@ -21,12 +21,19 @@ export default {
   setup() {
     const store = useStore()
 
+    const clickCard = (id) => {
+      store.commit('SetBasketList', id)
+    }
+
     const products = computed(() => {
       return store.getters.getProductsList
     })
+
     return {
-      products
+      products,
+      clickCard
     }
+    re
   }
 }
 </script>
