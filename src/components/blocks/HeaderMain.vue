@@ -12,7 +12,7 @@
       <h1 class="header__title"> {{ title }} </h1>
 
       <div class="header__info">
-        <div class="header__right" v-if="!isBasket">3 товара<br>на сумму 3 500 ₽</div>
+        <div class="header__right" v-if="!isBasket">{{ count }} товара<br>на сумму {{ price }} ₽</div>
         <div class="header__basket">
           <router-link to="/Basket" v-if="!isBasket">
             <basketIcon />
@@ -25,6 +25,9 @@
 
 <script>
 //  import { ref } from 'vue'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
 import basketIcon from '@/components/icons/basketIcon.vue'
 import ButtonX from '@/components/ui/ButtonX.vue'
 
@@ -49,6 +52,19 @@ export default {
     }
   },
   setup() {
+    const store = useStore()
+
+    const count = computed(() => {
+      return store.getters.getCountBasketProduct
+    })
+    const price = computed(() => {
+      return store.getters.getAllPriceInBasket
+    })
+    return {
+      count,
+      price
+    }
+
   }
 }
 </script>

@@ -13,7 +13,7 @@
       'card__footer': true,
       'card__footer_horizontally': !horizontally
     }">
-      <p class="card__price">{{ price }}</p>
+      <span class="card__price">{{ price }} ₽</span>
       <ButtonX title="+" />
     </div>
   </div>
@@ -41,8 +41,8 @@ export default {
       default: ''
     },
     price: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     },
     horizontally: {
       type: Boolean,
@@ -86,10 +86,6 @@ export default {
       }
     }
 
-    .card__footer {
-      margin: 0 0 0 auto;
-    }
-
     .card__title {
       margin-left: 100px;
       margin-bottom: 0;
@@ -97,11 +93,16 @@ export default {
 
     .card__preview {
       margin-bottom: 0;
+      width: 150px;
     }
 
     .card__price {
       margin: 0 20px 0 100px;
       color: #D58C51;
+    }
+
+    .card__footer {
+      margin: 0 0 0 auto;
     }
 
     &:hover {

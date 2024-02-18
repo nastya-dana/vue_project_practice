@@ -5,41 +5,18 @@
       'main__wrapper_column': column,
       'container__secandary': column
     }">
-      <CardProduct :horizontally="column" :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
-        description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры " price="2 700" />
+      <CardProduct :horizontally="column" v-for="(item, i) in  listArray " :key="i" :preview="item.img"
+        :title="item.title" :description="item.description" :price="item.price" />
 
-      <CardProduct :horizontally="column" :preview="require('@/assets/images/img2.png')"
-        title="Свиные ребрышки на гриле с зеленью"
-        description="Не следует, однако забывать, что реализация намеченных плановых " price="1 600" />
-
-      <CardProduct :horizontally="column" :preview="require('@/assets/images/img3.png')"
-        title="Креветки по-королевски в лимонном соке"
-        description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры обеспечивает широкому кругу"
-        price="1 820" />
-
-      <CardProduct :horizontally="column" :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
-        description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры " price="2 700" />
-
-      <CardProduct :horizontally="column" :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
-        description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры " price="2 700" />
-      <CardProduct :horizontally="column" :preview="require('@/assets/images/img2.png')"
-        title="Свиные ребрышки на гриле с зеленью"
-        description="Не следует, однако забывать, что реализация намеченных плановых " price="1 600" />
-
-      <CardProduct :horizontally="column" :preview="require('@/assets/images/img3.png')"
-        title="Креветки по-королевски в лимонном соке"
-        description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры обеспечивает широкому кругу"
-        price="1 820" />
-
-      <CardProduct :horizontally="column" :preview="require('@/assets/images/img1.png')" title="Устрицы по рокфеллеровски"
-        description="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры " price="2 700" />
     </div>
   </main>
 </template>
 
 <script>
 // import { ref } from 'vue'
+
 import CardProduct from '@/components/elements/CardProduct.vue'
+
 export default {
   name: 'Main',
   components: {
@@ -53,9 +30,14 @@ export default {
     column: {
       type: Boolean,
       default: false
+    },
+    listArray: {
+      type: Array,
+      default: () => { }
     }
   },
-  setup () {
+  setup() {
+
   }
 }
 </script>
