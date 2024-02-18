@@ -6,8 +6,7 @@
       'container__secandary': column
     }">
       <CardProduct :horizontally="column" v-for="(item, i) in  listArray " :key="i" :preview="item.img"
-        :title="item.title" :description="item.description" :price="item.price"
-        @clickCard="$emit('clickCard', item.id)" />
+        :title="item.title" :description="item.description" :price="item.price" @clickCard="$emit('clickCard', item)" />
 
     </div>
   </main>

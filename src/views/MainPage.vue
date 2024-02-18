@@ -7,6 +7,7 @@
 // import { ref } from 'vue'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
+
 import HeaderMain from '@/components/blocks/HeaderMain.vue'
 import Main from '@/components/blocks/Main.vue'
 
@@ -21,8 +22,8 @@ export default {
   setup() {
     const store = useStore()
 
-    const clickCard = (id) => {
-      store.commit('SetBasketList', id)
+    const clickCard = (item) => {
+      store.commit('SetBasketList', item.id)
     }
 
     const products = computed(() => {

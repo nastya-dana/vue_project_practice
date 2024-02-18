@@ -1,4 +1,6 @@
 import products from '@/modules/products'
+import { v4 as uuidv4 } from 'uuid'
+
 export default {
 
     state: {
@@ -18,14 +20,35 @@ export default {
         SetBasketList(state, val) {
             state.ProductsList.forEach(item => {
                 if (item.id === val) {
-                    state.BasketList.push(item)
+                    const itemBasket = {
+                        id: item.id,
+                        idx: uuidv4(),
+                        img: item.img,
+                        title: item.title,
+                        price: item.price
+                    }
+                    state.BasketList.push(itemBasket)
                 }
             });
+            localStorage.basket = JSON.stringify(state.BasketList)
             state.CountBasketProduct = state.BasketList.length
             state.AllPriceInBasket = state.BasketList.reduce((prev, item) => {
                 return prev + item.price
             }, 0)
-            //.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1')
+            // .toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1')
+        },
+        SetStoreBasket(state, val) {
+            state.BasketList = JSON.parse(localStorage.getItem('basket'))
+        },
+        SetBasketRemoveItem(state, val) {
+            state.BasketList = state.BasketList.filter(item => {
+                return item.idx !== val
+            })
+            localStorage.basket = JSON.stringify(state.BasketList)
+            state.CountBasketProduct = state.BasketList.length
+            state.AllPriceInBasket = state.BasketList.reduce((prev, item) => {
+                return prev + item.price
+            }, 0)
         }
 
     },
