@@ -13,7 +13,7 @@
       'card__footer': true,
       'card__footer_horizontally': !horizontally
     }">
-      <span class="card__price">{{ price }} ₽</span>
+      <span class="card__price">{{ price.toLocaleString() }} ₽</span>
       <ButtonX title="+" @click.stop="$emit('ClickCard')" />
     </div>
   </div>
