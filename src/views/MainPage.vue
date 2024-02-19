@@ -23,6 +23,7 @@ export default {
     const store = useStore()
 
     const clickCard = (item) => {
+      // console.log('Добавили в корзину:' + item.id);
       store.commit('SetBasketList', item.id)
     }
 

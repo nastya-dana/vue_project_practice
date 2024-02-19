@@ -6,7 +6,7 @@
         <div class="container__secandary basket-card_footer">
             <div class="basket-card_info">
                 <h2 class="basket-card_descr">Заказ на сумму: </h2>
-                <p class="basket-card_price">{{ price }} ₽</p>
+                <p class="basket-card_price">{{ price.toLocaleString() }} ₽</p>
             </div>
             <button class="basket-card_button">Оформить заказ</button>
         </div>
@@ -41,6 +41,7 @@ export default {
         })
 
         const clickCard = (item) => {
+            // console.log('Удалили из корзины' + item.id + '-' + item.idx);
             store.commit('SetBasketRemoveItem', item.idx)
         }
 

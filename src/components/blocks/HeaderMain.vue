@@ -13,7 +13,7 @@
       <h1 class="header__title"> {{ title }} </h1>
 
       <div class="header__info">
-        <div class="header__right" v-if="!isBasket">{{ count }} товара<br>на сумму {{ price }} ₽</div>
+        <div class="header__right" v-if="!isBasket">{{ count }} товара<br>на сумму {{ price.toLocaleString() }} ₽</div>
         <div class="header__basket">
           <router-link to="/Basket" v-if="!isBasket">
             <basketIcon />

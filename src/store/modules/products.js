@@ -39,6 +39,10 @@ export default {
         },
         SetStoreBasket(state, val) {
             state.BasketList = JSON.parse(localStorage.getItem('basket'))
+            state.CountBasketProduct = state.BasketList.length
+            state.AllPriceInBasket = state.BasketList.reduce((prev, item) => {
+                return prev + item.price
+            }, 0)
         },
         SetBasketRemoveItem(state, val) {
             state.BasketList = state.BasketList.filter(item => {
