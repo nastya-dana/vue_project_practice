@@ -2,7 +2,7 @@
   <div :class="{
     'card': true,
     'card_horizontally': horizontally
-  }">
+  }" @click="router.push(`/product/${id}`)">
 
     <img class="card__preview" :src="preview" alt="">
     <div class="card__info">
@@ -22,6 +22,8 @@
 <script>
 // import { ref } from 'vue'
 import ButtonX from '@/components/ui/ButtonX.vue'
+import { useRouter } from 'vue-router'
+
 export default {
   name: 'CardProduct',
   components: {
@@ -47,9 +49,17 @@ export default {
     horizontally: {
       type: Boolean,
       default: false
+    },
+    id: {
+      type: Number,
+      default: 0
     }
   },
   setup() {
+    const router = useRouter()
+    return {
+      router
+    }
   }
 }
 </script>

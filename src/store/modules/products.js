@@ -7,13 +7,15 @@ export default {
         CountBasketProduct: 0,
         AllPriceInBasket: 0,
         ProductsList: products,
-        BasketList: []
+        BasketList: [],
+        Product: null
     },
     getters: {
         getProductsList: state => state.ProductsList,
         getBasketList: state => state.BasketList,
         getCountBasketProduct: state => state.CountBasketProduct,
-        getAllPriceInBasket: state => state.AllPriceInBasket
+        getAllPriceInBasket: state => state.AllPriceInBasket,
+        getProductItem: state => state.Product
 
     },
     mutations: {
@@ -53,6 +55,12 @@ export default {
             state.AllPriceInBasket = state.BasketList.reduce((prev, item) => {
                 return prev + item.price
             }, 0)
+        },
+
+        SetProductItem(state, val) {
+            state.Product = state.ProductsList.find(element => {
+                return element.id === +val
+            })
         }
 
     },

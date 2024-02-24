@@ -7,18 +7,23 @@
       <div class="header__back" v-if="isBasket">
         <router-link to="/">
           <ButtonX title="←" />
-          <!-- @click="router.do(-1)" -->
         </router-link>
       </div>
+      <ButtonX v-if="isItem" title="←" @click="router.go(-1)" />
       <h1 class="header__title"> {{ title }} </h1>
 
       <div class="header__info">
-        <div class="header__right" v-if="!isBasket">{{ count }} товара<br>на сумму {{ price.toLocaleString() }} ₽</div>
-        <div class="header__basket">
-          <router-link to="/Basket" v-if="!isBasket">
+
+        <div class="header__basket" v-if="!isBasket">
+          <p class="header__link">{{ count }} товара<br>на сумму {{ price.toLocaleString() }} ₽</p>
+
+          <router-link to="/Basket">
             <basketIcon />
           </router-link>
+
         </div>
+
+        <ButtonGoOut title="Выйти" />
       </div>
     </div>
   </header>
@@ -32,12 +37,14 @@ import { useRouter } from 'vue-router'
 
 import basketIcon from '@/components/icons/basketIcon.vue'
 import ButtonX from '@/components/ui/ButtonX.vue'
+import ButtonGoOut from '@/components/ui/ButtonGoOut.vue'
 
 export default {
   name: 'HeaderMain',
   components: {
     basketIcon,
-    ButtonX
+    ButtonX,
+    ButtonGoOut
   },
   props: {
     title: {
@@ -49,6 +56,10 @@ export default {
       default: false
     },
     smallContainer: {
+      type: Boolean,
+      default: false
+    },
+    isItem: {
       type: Boolean,
       default: false
     }
@@ -92,13 +103,19 @@ export default {
     gap: 0 20px;
   }
 
+  &__basket {
+    display: flex;
+    align-items: center;
+    gap: 0 20px;
+  }
+
   &__title {
     font-size: 31px;
     font-family: Montserrat;
     font-weight: 700;
   }
 
-  &__right {
+  &__link {
     // display: flex;
     // justify-content: space-between;
     // align-items: center;
@@ -107,7 +124,7 @@ export default {
     font-weight: 500;
   }
 
-  :deep(button) {
+  :deep(.button) {
 
     border: 1px solid #D58C51;
     color: #D58C51;
@@ -117,5 +134,6 @@ export default {
 
     }
   }
+
 }
 </style>
