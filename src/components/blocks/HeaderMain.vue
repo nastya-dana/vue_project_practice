@@ -23,7 +23,7 @@
 
         </div>
 
-        <ButtonGoOut title="Выйти" />
+        <ButtonGoOut title="Выйти" @click.stop="clickGoOut" />
       </div>
     </div>
   </header>
@@ -75,10 +75,16 @@ export default {
     const price = computed(() => {
       return store.getters.getAllPriceInBasket
     })
+
+    const clickGoOut = () => {
+      localStorage.setItem('isAuth', JSON.stringify(false))
+      router.push('/auth')
+    }
     return {
       count,
       price,
-      router
+      router,
+      clickGoOut
     }
 
   }

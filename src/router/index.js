@@ -2,12 +2,18 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Products from '../views/MainPage.vue'
 import Basket from '../views/BasketPage.vue'
 import ProductPage from '../views/ProductPage.vue'
+import AuthPage from '../views/AuthPage.vue'
 
 const routes = [
   {
     path: '/',
     name: 'MainPage',
     component: Products
+  },
+  {
+    path: '/auth',
+    name: 'auth',
+    component: AuthPage
   },
   {
     path: '/basket',
