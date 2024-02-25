@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <HeaderMain isItem title="наша продукция" />
+        <HeaderMain isItem title="" />
         <div class="container item">
             <div class="item__img">
                 <img class="item__ipreview" :src="product.img" alt="">
@@ -9,7 +9,7 @@
                 <h2 class="item__title">{{ product.title }}</h2>
                 <p class="item__description">{{ product.description }}</p>
                 <span class="item__price">{{ product.price.toLocaleString() }} ₽</span>
-                <ButtonGoOut title="В корзину" buttonAdd @click="addInBasket" />
+                <ButtonGoOut title="В корзину" buttonAdd @click.stop="addInBasket" />
             </div>
         </div>
     </div>
