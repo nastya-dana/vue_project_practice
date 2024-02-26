@@ -7,14 +7,14 @@
       <h2 class="form__name">{{ title }}</h2>
 
       <div class="form__body">
-        <!-- <div class="form-body__login"> -->
-        <input class="form__input" type="text" placeholder="Логин" v-model="loginValue">
-        <span class="form__errorsLogin">{{ loginError }}</span>
-        <!-- </div> -->
-        <!-- <div class="form-body__password"> -->
-        <input class="form__input" type="password" placeholder="Пароль" v-model="passwordValue">
-        <span class="form__errorsPassword">{{ passwordError }}</span>
-        <!-- </div> -->
+        <div class="form__login">
+          <input class="form__input" type="text" placeholder="Логин" v-model="loginValue">
+          <span class="form__errorsLogin">{{ loginError }}</span>
+        </div>
+        <div class="form__password">
+          <input class="form__input" type="password" placeholder="Пароль" v-model="passwordValue">
+          <span class="form__errorsPassword">{{ passwordError }}</span>
+        </div>
 
         <div class="form__consent" v-show="!isAuthToogle">
           <input class="form__checkbox" type="checkbox" v-model="checkValue">
@@ -63,6 +63,7 @@ export default {
     const toogleForm = () => {
       loginError.value = ''
       passwordError.value = ''
+      isErrorUsersInfo.value = ''
 
       if (isAuthToogle.value) {
         title.value = 'Регистрация'
@@ -218,6 +219,14 @@ export default {
     margin-bottom: 40px;
   }
 
+  &__login {
+    width: 100%;
+  }
+
+  &__password {
+    width: 100%;
+  }
+
   &__input {
     border: 1px solid #D58C51;
     border-radius: 61px;
@@ -226,9 +235,11 @@ export default {
     color: #161516;
     font-family: Montserrat;
     font-weight: 400;
+    line-height: 20px;
     margin-bottom: 15px;
     width: 100%;
     height: 39px;
+    padding: 0px 10px 0px 10px;
     // &:focus {
     //     outline: none;
     // }
@@ -259,6 +270,10 @@ export default {
     color: #FF0B0B;
     font-family: Montserrat;
     font-weight: 300;
+    display: flex;
+    justify-content: center;
+    // bottom: 90px;
+    // left: 190px;
   }
 
   &__consent {
@@ -266,7 +281,7 @@ export default {
     align-items: center;
     position: absolute;
     // margin-bottom: 28px;
-    bottom: 70px;
+    bottom: 80px;
   }
 
   &__checkbox {

@@ -8,7 +8,10 @@
                 <h2 class="basket-card_descr">Заказ на сумму: </h2>
                 <p class="basket-card_price">{{ price.toLocaleString() }} ₽</p>
             </div>
-            <button class="basket-card_button">Оформить заказ</button>
+            <router-link to="/">
+                <button class="basket-card_button"> Оформить заказ</button>
+            </router-link>
+
         </div>
     </footer>
 </template>
