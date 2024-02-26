@@ -1,34 +1,34 @@
 <template>
-    <main class="main">
-        <div class="form">
+  <main class="main">
+    <form @submit.prevent class="form" action="">
 
-            <span class="form__toogle" @click.stop="toogleForm">{{ toogleName }}</span>
+      <span class="form__toogle" @click.stop="toogleForm">{{ toogleName }}</span>
 
-            <h2 class="form__name">{{ title }}</h2>
+      <h2 class="form__name">{{ title }}</h2>
 
-            <form @submit.prevent class="form-body" action="">
-                <div class="form-body__login">
-                    <input class="form-body__input" type="text" placeholder="Логин" v-model="loginValue">
-                    <div class="form-body__errors">{{ loginError }}</div>
-                </div>
-                <div class="form-body__password">
-                    <input class="form-body__input" type="password" placeholder="Пароль" v-model="passwordValue">
-                    <div class="form-body__errors">{{ passwordError }}</div>
-                </div>
+      <div class="form__body">
+        <!-- <div class="form-body__login"> -->
+        <input class="form__input" type="text" placeholder="Логин" v-model="loginValue">
+        <span class="form__errorsLogin">{{ loginError }}</span>
+        <!-- </div> -->
+        <!-- <div class="form-body__password"> -->
+        <input class="form__input" type="password" placeholder="Пароль" v-model="passwordValue">
+        <span class="form__errorsPassword">{{ passwordError }}</span>
+        <!-- </div> -->
 
-                <div class="form-body__consent" v-show="!isAuthToogle">
-                    <input class="form-body__checkbox" type="checkbox" v-model="checkValue">
-                    <label class="form-body__label" for="checkbox">
-                        Я согласен получать обновления на почту
-                    </label>
-                </div>
-
-                <span class="form-body__errorUsers">{{ isErrorUsersInfo }}</span>
-                <!-- v-show="isErrorUsers" -->
-                <ButtonGo :title="buttonName" buttonAdd @click.stop="clickForm" />
-            </form>
+        <div class="form__consent" v-show="!isAuthToogle">
+          <input class="form__checkbox" type="checkbox" v-model="checkValue">
+          <label class="form__label" for="checkbox">
+            Я согласен получать обновления на почту
+          </label>
         </div>
-    </main>
+      </div>
+      <span class="form__errorUsers">{{ isErrorUsersInfo }}</span>
+      <!-- v-show="isErrorUsers" -->
+      <ButtonGo :title="buttonName" buttonAdd @click.stop="clickForm" />
+
+    </form>
+  </main>
 </template>
 
 <script>
@@ -43,7 +43,7 @@ export default {
   },
   props: {
   },
-  setup () {
+  setup() {
     const router = useRouter()
 
     const title = ref('вход')
@@ -172,116 +172,121 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-    height: 100vh;
-    background-image: url(../assets/images/bgAuth.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100vh;
+  background-image: url(../assets/images/bgAuth.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form {
-    // width: 460px;
-    // height: 340px;
-    display: flex;
-    flex-direction: column;
-    // position: relative;
-    // width: 500px;
-    // border: 3px solid orange;
-    background-color: #fff;
-    padding: 9px 20px 20px 34px;
+  width: 460px;
+  // height: 340px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  // width: 500px;
+  // border: 3px solid orange;
+  background-color: #fff;
+  padding: 9px 20px 20px 34px;
 
-    &__toogle {
-        font-size: 11px;
-        font-family: Montserrat;
-        font-weight: 300;
-        cursor: pointer;
-        width: max-content;
-        margin-left: auto;
-        margin-bottom: 15px;
-        color: #D58C51;
-    }
+  &__toogle {
+    font-size: 11px;
+    font-family: Montserrat;
+    font-weight: 300;
+    cursor: pointer;
+    width: max-content;
+    margin-left: auto;
+    margin-bottom: 15px;
+    color: #D58C51;
+  }
 
-    &__name {
-        font-size: 31px;
-        font-family: Montserrat;
-        font-weight: 700;
-        margin: auto;
-        margin-bottom: 36px;
-    }
-}
+  &__name {
+    font-size: 31px;
+    font-family: Montserrat;
+    font-weight: 700;
+    margin: auto;
+    margin-bottom: 36px;
+  }
 
-.form-body {
+  &__body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 40px;
+  }
 
-    &__login {
-        margin-bottom: 8px;
-    }
+  &__input {
+    border: 1px solid #D58C51;
+    border-radius: 61px;
+    font-size: 16px;
+    position: relative;
+    color: #161516;
+    font-family: Montserrat;
+    font-weight: 400;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 39px;
+    // &:focus {
+    //     outline: none;
+    // }
+  }
 
-    &__password {
-        margin-bottom: 8px;
-    }
+  &__errorsLogin {
+    font-size: 8px;
+    color: #FF0B0B;
+    font-family: Montserrat;
+    font-weight: 300;
+    position: absolute;
+    bottom: 165px;
+    left: 48px;
+  }
 
-    &__input {
-        border: 1px solid #D58C51;
-        border-radius: 61px;
-        font-size: 16px;
-        position: relative;
-        color: #161516;
-        font-family: Montserrat;
-        font-weight: 400;
-        margin-bottom: 2px;
+  &__errorsPassword {
+    font-size: 8px;
+    color: #FF0B0B;
+    font-family: Montserrat;
+    font-weight: 300;
+    position: absolute;
+    bottom: 107px;
+    left: 48px;
+  }
 
-        // &:focus {
-        //     outline: none;
-        // }
-    }
+  &__errorUsers {
+    font-size: 8px;
+    color: #FF0B0B;
+    font-family: Montserrat;
+    font-weight: 300;
+  }
 
-    &__errors {
-        font-size: 8px;
-        color: #FF0B0B;
-        font-family: Montserrat;
-        font-weight: 300;
-        position: absolute;
-        // bottom: -8px;
-        // left: 8px;
-    }
+  &__consent {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    // margin-bottom: 28px;
+    bottom: 70px;
+  }
 
-    &__errorUsers {
-        font-size: 8px;
-        color: #FF0B0B;
-        font-family: Montserrat;
-        font-weight: 300;
-    }
+  &__checkbox {
+    border: 1px solid #D58C51;
+  }
 
-    &__consent {
-        display: flex;
-        align-items: center;
-        // position: absolute;
-        margin-bottom: 28px;
-    }
-
-    &__checkbox {
-        border: 1px solid #D58C51;
-    }
-
-    &__label {
-        font-size: 11px;
-        color: #301411;
-        font-family: Montserrat;
-        font-weight: 300;
-    }
+  &__label {
+    font-size: 11px;
+    color: #301411;
+    font-family: Montserrat;
+    font-weight: 300;
+  }
 }
 
 :deep(.buttonAdd) {
-    margin-left: 0px;
+  //margin-left: 0px;
 
-    &:hover {
-        background-color: #D58C51;
-        color: #161516;
-    }
+  &:hover {
+    background-color: #D58C51;
+    color: #161516;
+  }
 }
 </style>
