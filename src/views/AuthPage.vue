@@ -23,8 +23,7 @@
                     </label>
                 </div>
 
-                <span class="form-body__errorUsers">{{ isErrorUsers ? 'Логин или пароль неверен' : ''
-                }}</span>
+                <span class="form-body__errorUsers">{{ isErrorUsersInfo }}</span>
                 <!-- v-show="isErrorUsers" -->
                 <ButtonGo :title="buttonName" buttonAdd @click.stop="clickForm" />
             </form>
@@ -38,129 +37,136 @@ import { useRouter } from 'vue-router'
 import ButtonGo from '@/components/ui/ButtonGoOut.vue'
 
 export default {
-    name: 'AuthPage',
-    components: {
-        ButtonGo
-    },
-    props: {
-    },
-    setup() {
-        const router = useRouter()
+  name: 'AuthPage',
+  components: {
+    ButtonGo
+  },
+  props: {
+  },
+  setup () {
+    const router = useRouter()
 
-        const title = ref('вход')
-        const toogleName = ref('Зарегистрироваться')
-        const buttonName = ref('Войти')
-        const isAuthToogle = ref(true)
+    const title = ref('вход')
+    const toogleName = ref('Зарегистрироваться')
+    const buttonName = ref('Войти')
+    const isAuthToogle = ref(true)
 
-        const isErrorUsers = ref(false)
+    const isErrorUsersInfo = ref('')
 
-        const loginValue = ref('')
-        const passwordValue = ref('')
-        const checkValue = ref(false)
+    const loginValue = ref('')
+    const passwordValue = ref('')
+    const checkValue = ref(false)
 
-        const loginError = ref('')
-        const passwordError = ref('')
+    const loginError = ref('')
+    const passwordError = ref('')
 
-        const toogleForm = () => {
-            loginError.value = ''
-            passwordError.value = ''
+    const toogleForm = () => {
+      loginError.value = ''
+      passwordError.value = ''
 
-            if (isAuthToogle.value) {
-                title.value = 'Регистрация'
-                toogleName.value = 'Авторизоваться'
-                buttonName.value = 'Зарегистрироваться'
-            } else {
-                title.value = 'вход'
-                toogleName.value = 'Зарегистрироваться'
-                buttonName.value = 'Войти'
-            }
-            isAuthToogle.value = !isAuthToogle.value
-        }
-        const clickForm = () => {
-            //выполняем валидацию,
-            isAuthToogle.value ? authorization() : registration()
-        }
-        // если ок 
-        //     localStorage.setItem('isAuth', JSON.stringify(true))
-        //     router.push('/')
-
-
-        const authorization = () => {
-            loginError.value = ''
-            passwordError.value = ''
-
-            if (loginValue.value.trim().length === 0) {
-                loginError.value = 'Поле не должно быть пустым'
-            }
-            if (passwordValue.value.trim().length === 0) {
-                passwordError.value = 'Поле не должно быть пустым'
-            }
-            if (loginError.value.trim().length === 0 && passwordError.value.trim().length === 0) {
-
-                const users = JSON.parse(localStorage.getItem('users'))
-
-                const user = users.find(item => {
-                    return item.login === loginValue.value
-                })
-
-                if (!user) {
-                    isErrorUsers.value = true
-                } else {
-                    if (user?.password === passwordValue.value) {
-                        // localStorage.isAuth = JSON.stringify(true)
-                        localStorage.setItem('isAuth', JSON.stringify(true))
-                        router.push('/')
-                    } else {
-                        isErrorUsers.value = true
-                    }
-                }
-            }
-
-        }
-
-        const registration = () => {
-            loginError.value = ''
-            passwordError.value = ''
-
-            if (loginValue.value.trim().length === 0) {
-                loginError.value = 'Поле не должно быть пустым'
-            } else if (loginValue.value.trim().length < 4) {
-                loginError.value = 'Логин должен содержать не менее 4-х символов'
-            }
-
-            if (passwordValue.value.trim().length === 0) {
-                passwordError.value = 'Поле не должно быть пустым'
-            } else if (passwordValue.value.trim().length < 4) {
-                passwordError.value = 'Пароль должен содержать не менее 4-х символов'
-            }
-
-            if (loginError.value.trim().length === 0 && passwordError.value.trim().length === 0) {
-                const users = JSON.parse(localStorage.getItem('users'))
-
-                users.push({
-                    login: loginValue.value,
-                    password: passwordValue.value
-                })
-
-                localStorage.users = JSON.stringify(users)
-
-            }
-        }
-        return {
-            title,
-            toogleName,
-            buttonName,
-            loginValue,
-            passwordValue,
-            isAuthToogle,
-            isErrorUsers,
-            checkValue,
-            loginError,
-            passwordError,
-            toogleForm,
-            clickForm
-        }
+      if (isAuthToogle.value) {
+        title.value = 'Регистрация'
+        toogleName.value = 'Авторизоваться'
+        buttonName.value = 'Зарегистрироваться'
+      } else {
+        title.value = 'вход'
+        toogleName.value = 'Зарегистрироваться'
+        buttonName.value = 'Войти'
+      }
+      isAuthToogle.value = !isAuthToogle.value
     }
+    const clickForm = () => {
+      // выполняем валидацию,
+      isAuthToogle.value ? authorization() : registration()
+    }
+    // если ок
+    //     localStorage.setItem('isAuth', JSON.stringify(true))
+    //     router.push('/')
+
+    const authorization = () => {
+      loginError.value = ''
+      passwordError.value = ''
+
+      if (loginValue.value.trim().length === 0) {
+        loginError.value = 'Поле не должно быть пустым'
+      }
+      if (passwordValue.value.trim().length === 0) {
+        passwordError.value = 'Поле не должно быть пустым'
+      }
+      if (loginError.value.trim().length === 0 && passwordError.value.trim().length === 0) {
+        const users = JSON.parse(localStorage.getItem('users'))
+
+        const user = users.find(item => {
+          return item.login === loginValue.value
+        })
+
+        if (!user) {
+          // isErrorUsers.value = true
+          isErrorUsersInfo.value = 'Логин или пароль неверен'
+        } else {
+          if (user?.password === passwordValue.value) {
+            // localStorage.isAuth = JSON.stringify(true)
+            localStorage.setItem('isAuth', JSON.stringify(true))
+            router.push('/')
+          } else {
+            // isErrorUsers.value = true
+            isErrorUsersInfo.value = 'Логин или пароль неверен'
+          }
+        }
+      }
+    }
+
+    const registration = () => {
+      loginError.value = ''
+      passwordError.value = ''
+
+      if (loginValue.value.trim().length === 0) {
+        loginError.value = 'Поле не должно быть пустым'
+      } else if (loginValue.value.trim().length < 4) {
+        loginError.value = 'Логин должен содержать не менее 4-х символов'
+      }
+
+      if (passwordValue.value.trim().length === 0) {
+        passwordError.value = 'Поле не должно быть пустым'
+      } else if (passwordValue.value.trim().length < 4) {
+        passwordError.value = 'Пароль должен содержать не менее 4-х символов'
+      }
+
+      if (loginError.value.trim().length === 0 && passwordError.value.trim().length === 0) {
+        const users = JSON.parse(localStorage.getItem('users'))
+
+        const isCheckAuth = users.some(item => {
+          return item.login === loginValue.value
+        })
+
+        if (!isCheckAuth) {
+          users.push({
+            login: loginValue.value,
+            password: passwordValue.value
+          })
+          isErrorUsersInfo.value = ''
+
+          localStorage.users = JSON.stringify(users)
+        } else {
+          isErrorUsersInfo.value = 'Логин уже занят'
+        }
+      }
+    }
+    return {
+      title,
+      toogleName,
+      buttonName,
+      loginValue,
+      passwordValue,
+      isAuthToogle,
+      isErrorUsersInfo,
+      checkValue,
+      loginError,
+      passwordError,
+      toogleForm,
+      clickForm
+    }
+  }
 }
 </script>
 
